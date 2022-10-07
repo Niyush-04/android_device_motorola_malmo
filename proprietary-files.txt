@@ -1399,7 +1399,6 @@ vendor/lib64/motorola.hardware.tcmdaidl-V1-ndk.so
 
 # Telephony
 system/etc/sysconfig/qti_whitelist.xml
-system_ext/app/AtFwd2/AtFwd2.apk
 system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
 system_ext/etc/permissions/qti_libpermissions.xml
 system_ext/etc/permissions/qti_permissions.xml
@@ -1407,10 +1406,8 @@ system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 system_ext/etc/sysconfig/qti_telephony_system_packages_config.xml
 system_ext/etc/sysconfig/qti_whitelist_system_ext.xml
 system_ext/priv-app/QtiTelephony/QtiTelephony.apk;REQUIRED=QtiTelephonyCompat
-vendor/bin/ATFWD-daemon
 vendor/bin/qms
 vendor/etc/init/qms.rc
-vendor/etc/seccomp_policy/atfwd@2.0.policy
 vendor/etc/seccomp_policy/qms.policy
 vendor/etc/vintf/manifest/android.hardware.radio.config.xml
 vendor/etc/vintf/manifest/android.hardware.radio.data.xml
@@ -1420,12 +1417,10 @@ vendor/etc/vintf/manifest/android.hardware.radio.network.xml
 vendor/etc/vintf/manifest/android.hardware.radio.sap.xml
 vendor/etc/vintf/manifest/android.hardware.radio.sim.xml
 vendor/etc/vintf/manifest/android.hardware.radio.voice.xml
-vendor/etc/vintf/manifest/atfwd-saidl.xml
 vendor/etc/vintf/manifest/qms-saidl.xml
 vendor/etc/vintf/manifest/qtiradio-saidl.xml
 vendor/etc/vintf/manifest/vendor.qti.hardware.radio.qtiradioconfig.xml
 vendor/etc/telephony_packages.xml
-vendor/lib64/vendor.qti.hardware.radio.atfwd-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.common-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.qtiradio-V11-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.qtiradio@1.0.so

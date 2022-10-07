@@ -8,7 +8,6 @@ persist.vendor.overlay.izat.optin=rro
 media.stagefright.thumbnail.prefer_hw_codecs=true
 
 # Radio
-persist.vendor.radio.atfwd.start=true
 ril.subscription.types=NV,RUIM
 ro.radio.device_type=1
 ro.telephony.default_network=26,26

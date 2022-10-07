@@ -3558,7 +3558,6 @@ PRODUCT_COPY_FILES += \
     vendor/motorola/malmo/proprietary/vendor/etc/qcril_database/upgrade/other/0015_version_add_iccid_clir_pref_table.sql:$(TARGET_COPY_OUT_VENDOR)/etc/qcril_database/upgrade/other/0015_version_add_iccid_clir_pref_table.sql \
     vendor/motorola/malmo/proprietary/vendor/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
     vendor/motorola/malmo/proprietary/vendor/etc/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config \
-    vendor/motorola/malmo/proprietary/vendor/etc/seccomp_policy/atfwd@2.0.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/atfwd@2.0.policy \
     vendor/motorola/malmo/proprietary/vendor/etc/seccomp_policy/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
     vendor/motorola/malmo/proprietary/vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy \
     vendor/motorola/malmo/proprietary/vendor/etc/seccomp_policy/codec2.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.vendor.base-arm64.policy \
@@ -4429,7 +4428,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.radio.am-V1-ndk \
     vendor.qti.hardware.radio.am@1.0 \
     vendor.qti.hardware.radio.atcmdfwd@1.0 \
-    vendor.qti.hardware.radio.atfwd-V1-ndk \
     vendor.qti.hardware.radio.common-V1-ndk \
     vendor.qti.hardware.radio.ims-V12-ndk \
     vendor.qti.hardware.radio.ims@1.0 \
@@ -4555,7 +4553,6 @@ PRODUCT_PACKAGES += \
     TimeService \
     uimgbaservice \
     EuiccGoogle \
-    AtFwd2 \
     ImsRcsService \
     QtiTelephonyService \
     QtiTelephony \
@@ -4594,7 +4591,6 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.voice.xml \
     android.hardware.secure_element.xml \
     android.hardware.security.keymint-service-qti.xml \
-    atfwd-saidl.xml \
     c2_manifest_vendor_audio.xml \
     com.motorola.hardware.display.panel-service.xml \
     com.motorola.hardware.display.touch.xml \
@@ -4637,7 +4633,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.qccvndhal_aidl-service.xml \
     vendor.qti.qspmhal-service.xml \
     vendor.qti.qesdsys.service.xml \
-    ATFWD-daemon \
     adpl \
     adsprpcd \
     capsense_reset \

@@ -114,7 +114,9 @@ PRODUCT_PACKAGES += \
     vendor_bt_firmware_mountpoint \
     vendor_dsp_mountpoint \
     vendor_firmware_mnt_mountpoint \
-    vendor_fsg_mountpoint
+    vendor_fsg_mountpoint \
+    vendor_super_fsg_mountpoint \
+    vendor_super_modem_mountpoint
 
 # Sensors
 PRODUCT_COPY_FILES += \

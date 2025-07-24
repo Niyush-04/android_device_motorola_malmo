@@ -143,6 +143,10 @@ PRODUCT_PACKAGES += \
     vendor_super_fsg_mountpoint \
     vendor_super_modem_mountpoint
 
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power-service-qti
+
 # RFS MSM MPSS symlinks
 PRODUCT_PACKAGES += \
     rfs_msm_mpss_readonly_vendor_fsg_symlink

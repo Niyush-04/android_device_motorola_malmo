@@ -214,6 +214,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 PRODUCT_PACKAGES += \
     FrameworkResOverlayMalmo \
+    SettingsOverlayMalmo \
     SystemUIOverlayMalmo \
     WifiOverlayMalmo
 

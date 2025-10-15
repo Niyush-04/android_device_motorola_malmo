@@ -76,6 +76,13 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('/system/', '/system_ext/'),
     'system_ext/priv-app/ims/ims.apk': blob_fixup()
         .apktool_patch('ims-patches'),
+    (
+        'vendor/lib64/camera/components/com.mot.node.c2d.so',
+        'vendor/lib64/camera/components/com.qti.node.dewarp.so',
+        'vendor/lib64/camera/components/com.vidhance.node.ica.so',
+        'vendor/lib64/camera/components/com.vidhance.node.processing.so'
+    ): blob_fixup()
+        .replace_needed('libui.so', 'libui-v34.so'),
 }  # fmt: skip
 
 

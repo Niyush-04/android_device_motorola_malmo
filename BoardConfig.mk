@@ -140,6 +140,9 @@ TARGET_BOARD_PLATFORM := blair
 
 # Recovery
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/etc/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_USERIMAGES_USE_F2FS := true
 
 # Vendor
 include vendor/motorola/malmo/BoardConfigVendor.mk

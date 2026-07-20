@@ -174,6 +174,11 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/motorola/vintf/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
 
+ODM_MANIFEST_SKUS := b d de dn n
+$(foreach sku,$(ODM_MANIFEST_SKUS), \
+    $(eval ODM_MANIFEST_$(call to-upper,$(sku))_FILES := \
+        $(DEVICE_PATH)/vintf/sku/manifest_$(sku).xml))
+
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211

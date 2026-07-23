@@ -30,6 +30,22 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := kryo300
 
+# Audio
+AUDIO_FEATURE_ENABLED_DLKM := true
+AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
+AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
+AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS := false
+AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
+AUDIO_FEATURE_ENABLED_AGM_HIDL := true
+AUDIO_FEATURE_ENABLED_PAL_HIDL := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+
+TARGET_USES_QCOM_MM_AUDIO := true
+
+TARGET_PROVIDES_AUDIO_HAL := true
+TARGET_PROVIDES_LIBAGM := true
+TARGET_PROVIDES_LIBAR_PAL := true
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := malmo
 TARGET_NO_BOOTLOADER := true
@@ -172,7 +188,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 # VINTF
 DEVICE_MANIFEST_SKUS := blair
 DEVICE_MANIFEST_BLAIR_FILES := \
-    $(DEVICE_PATH)/vintf/manifest_blair.xml
+    $(DEVICE_PATH)/vintf/manifest_blair.xml \
+    hardware/qcom-caf/sm6375-6.1/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
+    hardware/qcom-caf/sm6375-6.1/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
 
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 

@@ -1,0 +1,8 @@
+on boot && property:ro.vendor.hw.nfc=ese_nq
+    start vendor.secure_element
+
+service vendor.secure_element /vendor/bin/hw/android.hardware.secure_element-service.qti
+    class hal
+    user system
+    group nfc system
+    disabled

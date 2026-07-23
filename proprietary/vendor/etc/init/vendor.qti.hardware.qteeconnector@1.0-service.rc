@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2017, 2021, 2023 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+
+on boot && property:ro.vendor.hw.nfc=ese_nq
+    start qteeconnector-hal-1-0
+
+service qteeconnector-hal-1-0 /vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
+    class early_hal
+    user system
+    group system
+    interface aidl vendor.qti.hardware.qteeconnector
+    disabled

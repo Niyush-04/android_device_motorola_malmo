@@ -1,0 +1,15 @@
+# CNE
+persist.vendor.cne.feature=1
+
+# GNSS
+persist.vendor.overlay.izat.optin=rro
+
+# Media
+media.stagefright.thumbnail.prefer_hw_codecs=true
+
+# Radio
+persist.vendor.radio.atfwd.start=true
+ril.subscription.types=NV,RUIM
+ro.radio.device_type=1
+ro.telephony.default_network=26,26
+telephony.lteOnCdmaDevice=1

@@ -1,57 +1,99 @@
 #!/bin/bash
+#
+# Copyright (C) 2023 Paranoid Android
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 
 set -e
 
-DUMP_OUT=$1
+### Setup
+DUMP=
+MY_DIR="${BASH_SOURCE%/*}"
+SRC_ROOT="${MY_DIR}/../../.."
+TMP_DIR=$(mktemp -d)
+EXTRACT_KERNEL=true
+declare -a MODULE_FOLDERS=("vendor_ramdisk" "vendor_dlkm" "system_dlkm")
 
-function usage() {
-	echo "Usage: ./extract-files.sh <dumprx-out-dir>"
-	exit 1
-}
+while [ "${#}" -gt 0 ]; do
+    case "${1}" in
+        -n | --no-kernel )
+                EXTRACT_KERNEL=false
+                ;;
+        * )
+                DUMP="${1}"
+                ;;
+    esac
+    shift
+done
 
-if [[ -z $DUMP_OUT ]] || [[ ! -d $DUMP_OUT ]]; then
-	usage
+[ -f "${MY_DIR}/Module.symvers" ] || touch "${MY_DIR}/Module.symvers"
+[ -f "${MY_DIR}/System.map" ] || touch "${MY_DIR}/System.map"
+
+# Check if dump is specified and exists
+if [ -z "${DUMP}" ]; then
+    echo "Please specify the dump!"
+    exit 1
+elif [ ! -d "${DUMP}" ]; then
+    echo "Unable to find dump at ${DUMP}!"
+    exit 1
 fi
 
-# Clean and create needed directories
-for dir in ./modules/vendor_dlkm ./modules/system_dlkm ./modules/vendor_boot ./images ./images/dtbs; do
-    rm -rf $dir
-    mkdir -p $dir
-done
+echo "Extracting files from ${DUMP}:"
 
-# BOOT
-echo "Copying the kernel"
-cp "$DUMP_OUT/boot/kernel" ./images/kernel
-echo "Done"
+### Kernel
+if ${EXTRACT_KERNEL}; then
+    echo "Extracting boot image.."
+    ${SRC_ROOT}/system/tools/mkbootimg/unpack_bootimg.py \
+        --boot_img "${DUMP}/boot.img" \
+        --out "${TMP_DIR}/boot.out" > /dev/null
+    cp -f "${TMP_DIR}/boot.out/kernel" ${MY_DIR}/kernel
+    echo "  - kernel"
+fi
 
-# VENDOR_BOOT - ramdisk modules
-echo "Copying vendor_boot ramdisk modules"
-for module in $(find "$DUMP_OUT/vendor_boot/ramdisk" \( -name "*.ko" -o -name "modules.load*" -o -name "modules.blocklist" \)); do
-	cp "$module" ./modules/vendor_boot/
-done
-echo "Done"
+### DTBS
+# Cleanup / Preparation
+rm -rf "${MY_DIR}/dtbs"
+mkdir "${MY_DIR}/dtbs"
 
-# VENDOR_DLKM modules
-echo "Copying vendor_dlkm modules"
-for module in $(find "$DUMP_OUT/vendor_dlkm/lib/modules" -maxdepth 1 \( -name "*.ko" -o -name "modules.load*" -o -name "modules.blocklist" \)); do
-	cp "$module" ./modules/vendor_dlkm/
-done
-echo "Done"
+echo "Extracting vendor_boot image..."
+${SRC_ROOT}/system/tools/mkbootimg/unpack_bootimg.py \
+    --boot_img "${DUMP}/vendor_boot.img" \
+    --out "${TMP_DIR}/vendor_boot.out" > /dev/null
 
-# SYSTEM_DLKM modules
-echo "Copying system_dlkm modules"
-cp -r "$DUMP_OUT"/system_dlkm/lib/modules/6.1* ./modules/system_dlkm/
-echo "Done"
+curl -sSL "https://raw.githubusercontent.com/PabloCastellano/extract-dtb/master/extract_dtb/extract_dtb.py" > ${TMP_DIR}/extract_dtb.py
 
-# DTBO and vendor_boot DTBs (dumprx already split these out)
-echo "Copying DTBs"
-find "$DUMP_OUT/vendor_boot/dtb" -type f -name "*.dtb" \
-    -exec cp {} ./images/dtbs/ \; \
+# Copy
+python3 "${TMP_DIR}/extract_dtb.py" "${TMP_DIR}/vendor_boot.out/dtb" -o "${TMP_DIR}/dtbs" > /dev/null
+find "${TMP_DIR}/dtbs" -type f -name "*.dtb" \
+    -exec cp {} "${MY_DIR}/dtbs" \; \
     -exec printf "  - dtbs/" \; \
     -exec basename {} \;
+cp -f "${DUMP}/dtbo.img" "${MY_DIR}/dtbs/dtbo.img"
+cp -f "${DUMP}/dtbo.img" "${MY_DIR}/dtbo.img"
+echo "  - dtbs/dtbo.img"
 
-echo "Copying dtbo.img"
-cp -f "$DUMP_OUT/dtbo.img" ./images/dtbo.img
-echo "Done"
+### Modules
+# Cleanup / Preparation
+for MODULE_FOLDER in "${MODULE_FOLDERS[@]}"; do
+    rm -rf "${MY_DIR}/${MODULE_FOLDER}"
+    mkdir "${MY_DIR}/${MODULE_FOLDER}"
+done
 
-echo "Extracted files successfully"
+# Copy
+for MODULE_FOLDER in "${MODULE_FOLDERS[@]}"; do
+    MODULE_SRC="${DUMP}/${MODULE_FOLDER}"
+    if [ "${MODULE_FOLDER}" == "vendor_ramdisk" ]; then
+        lz4 -qd "${TMP_DIR}/vendor_boot.out/vendor_ramdisk00" "${TMP_DIR}/vendor_ramdisk.cpio"
+        7z x "${TMP_DIR}/vendor_ramdisk.cpio" -o"${TMP_DIR}/vendor_ramdisk" > /dev/null
+        MODULE_SRC="${TMP_DIR}/vendor_ramdisk"
+    fi
+    [ -d "${MODULE_SRC}" ] || break
+    find "${MODULE_SRC}/lib/modules" -type f \
+        -exec cp {} "${MY_DIR}/${MODULE_FOLDER}/" \; \
+        -exec printf "  - ${MODULE_FOLDER}/" \; \
+        -exec basename {} \;
+done
+
+# Clear temp dir
+rm -rf "${TMP_DIR}"

@@ -1,0 +1,22 @@
+# Copyright (c) 2019-2023, The Linux Foundation. All rights reserved.
+#
+# Motorola product module block list
+#
+
+blocklist goodix_fod_mmi
+blocklist anc_fps_mmi
+blocklist qpnp_adaptive_charge
+blocklist focaltech_v3_4
+blocklist mmi-smbcharger-iio
+blocklist mmi_parallel_charger_iio
+blocklist goodix_brl_mmi
+blocklist watchdogtest
+blocklist sx937x_sar
+blocklist awinic_sar
+blocklist aw_haptic_hv_v1_5
+blocklist watchdogtest
+blocklist mmi_sys_temp
+blocklist moto_swap
+blocklist moto_mmap_fault
+blocklist wakeup_sources
+blocklist con_dfpar

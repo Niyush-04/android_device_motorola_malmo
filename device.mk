@@ -165,10 +165,17 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    fstab.qcom.vendor_ramdisk
+    fstab.qcom.vendor_ramdisk \
+    fstab.qcom.zram
 
 PRODUCT_PACKAGES += \
-    init.recovery.qcom.rc
+    init.mmi.chipset.rc \
+    init.mmi.overlay.rc \
+    init.mmi.rc \
+    init.qcom.rc \
+    init.recovery.qcom.rc \
+    init.target.rc \
+    ueventd.qcom.rc
 
 # IPACM
 PRODUCT_PACKAGES += \

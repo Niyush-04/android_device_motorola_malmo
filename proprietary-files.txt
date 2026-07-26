@@ -839,23 +839,15 @@ vendor/bin/init.qti.kernel.early_debug-blair.sh
 vendor/bin/init.qti.kernel.early_debug-holi.sh
 vendor/bin/init.qti.kernel.early_debug.sh
 vendor/etc/init/hw/init.mmi.charge_only.rc
-vendor/etc/init/hw/init.mmi.chipset.rc
 vendor/etc/init/hw/init.mmi.debug.rc
 vendor/etc/init/hw/init.mmi.diag.rc
 vendor/etc/init/hw/init.mmi.diag_mdlog.rc
-vendor/etc/init/hw/init.mmi.overlay.rc
-vendor/etc/init/hw/init.mmi.rc
 vendor/etc/init/hw/init.mmi.tcmd.rc
 vendor/etc/init/hw/init.mmi.usb.rc
 vendor/etc/init/hw/init.mmi.wlan.rc
 vendor/etc/init/hw/init.qcom.factory.rc
-vendor/etc/init/hw/init.qcom.rc
 vendor/etc/init/hw/init.qti.kernel.rc
 vendor/etc/init/hw/init.qti.ufs.rc
-vendor/etc/init/hw/init.target.rc
-vendor/etc/fstab.qcom.zram
-vendor/etc/fstab.qcom.zramwb
-vendor/etc/ueventd.rc
 
 # IPA Firmware
 vendor/etc/init/ipa_fws.rc

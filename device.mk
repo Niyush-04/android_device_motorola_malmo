@@ -128,6 +128,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
+# eUICC
+PRODUCT_PACKAGES += \
+    MotoEuicc
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd

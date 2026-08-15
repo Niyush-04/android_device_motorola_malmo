@@ -23,10 +23,6 @@
         <fqname>IGatekeeper/default</fqname>
     </hal>
     <hal format="aidl">
-        <name>android.hardware.nfc</name>
-        <fqname>INfc/default</fqname>
-    </hal>
-    <hal format="aidl">
         <name>android.hardware.secure_element</name>
         <fqname>ISecureElement/eSE1</fqname>
     </hal>
@@ -65,10 +61,6 @@
         <name>motorola.hardware.vibrator</name>
         <transport>hwbinder</transport>
         <fqname>@1.0::IMotVibrator/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.nxp.nxpnfc_aidl</name>
-        <fqname>INxpNfc/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.hardware.AGMIPC</name>

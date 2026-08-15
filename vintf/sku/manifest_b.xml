@@ -1,8 +1,5 @@
 <manifest version="7.0" type="device">
     <hal format="aidl" override="true">
-        <name>android.hardware.nfc</name>
-    </hal>
-    <hal format="aidl" override="true">
         <name>android.hardware.radio.data</name>
         <version>2</version>
         <fqname>IRadioData/slot1</fqname>
@@ -42,9 +39,6 @@
     </hal>
     <hal format="aidl" override="true">
         <name>android.se.omapi</name>
-    </hal>
-    <hal format="aidl" override="true">
-        <name>vendor.nxp.nxpnfc_aidl</name>
     </hal>
     <hal format="aidl" override="true">
         <name>vendor.qti.hardware.data.connectionaidl</name>

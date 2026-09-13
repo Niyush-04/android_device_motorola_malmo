@@ -1,4 +1,4 @@
-# All blobs from user 16 UUO3S4HV-W1-ST31 361fe6 release-keys, unless pinned
+# All blobs from user 16 UUO3S4HV-W1-ST31 af1faf release-keys, unless pinned
 
 # ACDB
 vendor/etc/acdbdata/blair_qrd/QRD_acdb_cal.acdb

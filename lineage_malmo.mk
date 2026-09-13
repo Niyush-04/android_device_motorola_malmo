@@ -21,8 +21,8 @@ PRODUCT_MODEL := moto g85 5G
 PRODUCT_MANUFACTURER := motorola
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="malmo_g-user 16 W1UOS36M-W1-ST31 bd8b26 release-keys" \
-    BuildFingerprint=motorola/malmo_g/msi:16/W1UOS36M-W1-ST31/bd8b26:user/release-keys \
+    BuildDesc="malmo_g-user 16 W1UOS36M-W1-ST31 af1faf release-keys" \
+    BuildFingerprint=motorola/malmo_g/msi:16/W1UOS36M-W1-ST31/af1faf:user/release-keys \
     DeviceName=malmo \
     DeviceProduct=malmo_g
 

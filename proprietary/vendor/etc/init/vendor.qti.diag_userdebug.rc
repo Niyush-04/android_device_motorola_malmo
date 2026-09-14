@@ -1,0 +1,51 @@
+#
+# Copyright (c) 2022 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+### [MALMO CUSTOMIZED vendor.qti.diag_userdebug.rc] ###
+
+on early-init
+    chown system system /sys/devices/soc0/select_image
+    chown system system /sys/devices/soc0/image_version
+    chown system system /sys/devices/soc0/image_variant
+    chown system system /sys/devices/soc0/image_crm_version
+
+# moto rework for user version diag log
+on boot
+    chown system system /sys/bus/coresight/devices/coresight-tmc-etr/enable_sink
+    chmod 660 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/enable_sink
+    chown system system /sys/bus/coresight/devices/coresight-tmc-etr/out_mode
+    chown system system /sys/bus/coresight/devices/coresight-stm/enable_source
+    chmod 660 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/out_mode
+    chown root oem_2902 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/block_size
+    chmod 660 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/block_size
+    chown root oem_2902 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/buffer_size
+    chmod 660 /sys/devices/platform/soc/8048000.tmc/coresight-tmc-etr/buffer_size
+    chown system system /sys/bus/coresight/devices/coresight-tmc-etr1/enable_sink
+    chmod 660 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/enable_sink
+    chown system system /sys/bus/coresight/devices/coresight-tmc-etr1/out_mode
+    chmod 660 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/out_mode
+    chown root oem_2902 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/block_size
+    chmod 660 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/block_size
+    chown root oem_2902 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/buffer_size
+    chmod 660 /sys/devices/platform/soc/1004f000.tmc/coresight-tmc-etr1/buffer_size
+    chown root oem_2902 /sys/bus/coresight/reset_source_sink
+    chmod 660 /sys/bus/coresight/reset_source_sink
+    chmod 660 /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+    chown log vendor_qdss /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+    chmod 660 /sys/bus/coresight/devices/coresight-tmc-etr1/block_size
+    chown log vendor_qdss /sys/bus/coresight/devices/coresight-tmc-etr1/block_size
+    chown system system /sys/bus/coresight/devices/coresight-modem-diag/enable_source
+
+on early-boot
+    start vendor.diag-router
+
+service vendor.diag-router /vendor/bin/diag-router
+    class hal
+    user system
+    group system
+    capabilities KILL
+    task_profiles ProcessCapacityLow HighEnergySaving LowIoPriority
+    disabled
+

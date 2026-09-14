@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2023 Motorola Mobility, Lenovo Company -->
+<validation match="ro.boot.device">
+	<!-- device describes a version of mapping logic applicable to a matching device -->
+	<!-- the device string to do case-insensitive substring match against "name" is
+		to be queried from property indicated by "match", or its BL equivalent -->
+	<!-- incremented version tells boot script to update the validation tags from this file -->
+
+	<device name="malmo" version="1.9">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- esim -->
+				<item>esim</item>
+				<!-- esim id-->
+                                <item>esimid</item>
+				<!--SKU variant -->
+				<item>sku_variant</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:BRLA,2:APEU,3:INDIA,4:PRC,5:BRLAQ,6:APEUQ,7:INDIAQ,8:PRCQ,9:BRLAP,10:APEUP,11:INDIAP,12:PRCP</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>BRLA</item>
+				<item>APEU</item>
+				<item>INDIA</item>
+				<item>PRC</item>
+				<item>BRLAQ</item>
+				<item>APEUQ</item>
+				<item>INDIAQ</item>
+				<item>PRCQ</item>
+				<item>BRLAP</item>
+				<item>APEUP</item>
+				<item>INDIAP</item>
+				<item>PRCP</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>8GB</item>
+				<item>12GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+				<item>512GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw.</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+			<string-array name="frontcolor/.range">
+				<item>gadgetgray</item>
+				<item>olivine</item>
+				<item>surftheweb</item>
+				<item>vivamagenta</item>
+				<item>slate</item>
+				<item>other</item>
+			</string-array>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:nq,2:nq,3:false,4:ese_nq,5:nq,6:nq,7:false,8:ese_nq,9:nq,10:nq,11:false,12:ese_nq</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>nq</item>
+				<item>ese_nq</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="sku_variant/.cmdline">androidboot.</string>
+			<string-array name="sku_variant/.range">
+				<item>n</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+		</constraints>
+
+		<mappings>
+			<sku-variants export="ro.vendor.hw.sku_variant" writeback="sku_variant">
+				<!-- ... same format as before ... -->
+				<variant name="n">
+					<string name="nfc">nq</string>
+				</variant>
+				<variant1 name="n">
+					<string name="nfc">ese_nq</string>
+				</variant1>
+			</sku-variants>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant">
+				<!-- ... same format as variants/products ... -->
+				<variant name="n">
+					<string name="dualsim">false</string>
+					<string name="nfc">nq</string>
+				</variant>
+				<variant name="dn">
+					<string name="dualsim">true</string>
+					<string name="nfc">nq</string>
+				</variant>
+				<variant name="de">
+					<string name="dualsim">true</string>
+					<string name="nfc">ese_nq</string>
+				</variant>
+				<variant name="b">
+					<string name="dualsim">false</string>
+					<string name="nfc">false</string>
+				</variant>
+				<variant name="d">
+					<string name="dualsim">true</string>
+					<string name="nfc">false</string>
+				</variant>
+			</skus>
+		</mappings>
+	</device>
+</validation>

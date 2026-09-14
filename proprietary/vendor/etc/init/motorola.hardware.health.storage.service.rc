@@ -1,0 +1,5 @@
+service vendor.mot.health-storage-hal-aidl /vendor/bin/hw/motorola.hardware.health.storage-service
+    interface aidl motorola.hardware.health.storage.IMotStorage/default
+    class hal
+    user system
+    group system

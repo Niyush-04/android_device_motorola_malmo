@@ -74,6 +74,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.sensors-V2-ndk.so', 'android.hardware.sensors-V3-ndk.so'),
     'system_ext/etc/permissions/moto-telephony.xml': blob_fixup()
         .regex_replace('/system/', '/system_ext/'),
+    'system_ext/priv-app/ims/ims.apk': blob_fixup()
+        .apktool_patch('ims-patches'),
 }  # fmt: skip
 
 

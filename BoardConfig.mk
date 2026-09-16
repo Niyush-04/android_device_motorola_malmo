@@ -174,6 +174,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
+# Security patch level
+VENDOR_SECURITY_PATCH := 2026-05-01
+
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/motorola/sepolicy/qti/SEPolicy.mk

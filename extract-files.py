@@ -87,6 +87,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libui.so', 'libui-v34.so'),
     'vendor/lib64/libmot_chi_desktop_helper.so': blob_fixup()
         .add_needed('libgui_buffer_shim_vendor.so'),
+    'vendor/lib64/hw/anc.hal.so': blob_fixup()
+        .add_needed('libion.so'),
 }  # fmt: skip
 
 

@@ -2639,31 +2639,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "com.motorola.hardware.biometric.fingerprint-V2-ndk",
-    owner: "motorola",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/com.motorola.hardware.biometric.fingerprint-V2-ndk.so",
-            ],
-            shared_libs: [
-                "libbinder_ndk",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
     name: "com.motorola.hardware.display.panel-V1-ndk",
     owner: "motorola",
     strip: {
@@ -4555,6 +4530,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/hw/anc.hal.so",
             ],
             shared_libs: [
+                "libion",
                 "libcutils",
                 "libutils",
                 "liblog",
@@ -11703,6 +11679,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmot_chi_desktop_helper.so",
             ],
             shared_libs: [
+                "libgui_buffer_shim_vendor",
                 "libutils",
                 "libcutils",
                 "liblog",

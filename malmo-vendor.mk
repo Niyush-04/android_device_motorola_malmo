@@ -3849,7 +3849,6 @@ PRODUCT_PACKAGES += \
     libdepthmapwrapper_secure \
     camx.device-impl \
     camx.provider-impl \
-    com.motorola.hardware.biometric.fingerprint-V2-ndk \
     com.motorola.hardware.display.panel-V1-ndk \
     com.motorola.hardware.display.touch-V3-ndk \
     com.qti.chiusecaseselector \

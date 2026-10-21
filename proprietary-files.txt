@@ -64,9 +64,12 @@ vendor/etc/audio/sku_blair/resourcemanager_blair_qrd.xml
 vendor/etc/ap_gain.bin
 vendor/etc/ap_gain_mmul.bin
 vendor/etc/audio_ext_spkr.conf
+vendor/etc/audio_policy_volumes.xml
 vendor/etc/backend_conf.xml
 vendor/etc/card-defs.xml
+vendor/etc/default_volume_tables.xml
 vendor/etc/microphone_characteristics.xml
+vendor/etc/r_submix_audio_policy_configuration.xml
 vendor/etc/usecaseKvManager.xml
 
 # Audio Firmware
